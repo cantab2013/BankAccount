@@ -42,11 +42,11 @@ $(function() {
 			$(this.el).append('<tr class="header"><td>Type</td><td>Account</td><td>Amount</td></tr>');
 			for (var i = 0; i < this.collection.length; i++) {
 				console.log(i);
-				if (this.collection.at(i).get('account') != 'none') {
+//				if (this.collection.at(i).get('account') != 'none') {
 					$(this.el).append(new App.TransactionView({
 						model : this.collection.at(i)
 					}).el);
-				}
+//				}
 			}
 			;
 		},
