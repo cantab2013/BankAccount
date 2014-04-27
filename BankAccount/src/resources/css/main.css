@@ -1,0 +1,98 @@
+@CHARSET "UTF-8";
+
+html {
+	background: gainsboro;
+	height: 100%;
+	width:100%;
+}
+
+body {
+	width: 40%;
+	margin-left: 30%;
+	background: white;
+	padding: 1em;
+	border: 1px solid black;
+	overflow: scroll;
+}
+
+#withdrawInput, #depositInput {
+	padding: .5em;
+	margin-bottom: 2em;
+	text-align: center;
+}
+#operationLabel {
+}
+#withdrawPanel, #depositPanel {
+	width: 25%;
+	margin-left: 37.5%;
+}
+
+#focusView {
+	text-align: center;
+}
+
+nav {
+	width: 100%;
+	height: auto;
+	background: gray;
+}
+
+.link {
+	cursor: pointer;
+}
+
+.link:HOVER {
+	color: lightBlue;
+}
+
+.navElement {
+	display: inline-block;
+	margin: auto;
+	padding: 2%;
+	color: white;
+}
+
+#modifyPanel {
+	text-align: center;
+}
+
+#withdrawPanel {
+	display: none;
+}
+
+.modifyButton {
+	float: right;
+}
+
+h1 {
+	text-align: center;
+	width: 100%;
+}
+
+#transactionsList {
+	width: 100%;
+	padding-top: 1em;
+}
+
+tr,th {
+	width: 100%;
+	text-indent: 1em;
+}
+
+.header {
+	background: lightBlue;
+	text-align: center;
+	text-indent: 0;
+}
+
+td {
+	width: 20%;
+}
+
+.account {
+	float: left;
+}
+
+.balance {
+	float: right;
+}
