@@ -100,6 +100,7 @@ $(function() {
 	// view for withdraw panel
 	App.WithdrawPanel = Backbone.View.extend({
 		id : 'withdrawPanel',
+		className : 'modifyPanel',
 		render : function() {
 			var self = this;
 			var model = this.model;
@@ -111,7 +112,7 @@ $(function() {
 				console.log('DEBUG: WithdrawPanel: render(): submit button clicked');
 				var val = $('#withdrawInput').val();
 				if (!isNaN(val)) {
-					model.set('balance', model.get('balance') - val);
+					model.set('balance', model.get('balance') - (+val));
 					App.CURRENT.addTransaction(new App.Transaction({
 						type: 'Withdrawal',
 						amount: val,
@@ -138,6 +139,61 @@ $(function() {
 		},
 		close : function() {
 			console.log('DEBUG: WithdrawPanel: close(): closing the panel');
+			$(this.el).fadeOut(300, function() {
+				$(this.el).remove();
+				$('article').fadeIn(300);
+			});
+		},
+		initialize : function() {
+			this.render();
+		}
+	});
+	
+	// view for deposit panel
+	App.DepositPanel = Backbone.View.extend({
+		id : 'depositPanel',
+		className : 'modifyPanel',
+		render : function() {
+			var self = this;
+			var model = this.model;
+			$(this.el).css('text-align', 'center');
+			$(this.el).append('<h3 id="operationLabel">Deposit:</h3>');
+			$(this.el).append('<input type="text" id="depositInput" name="deposit">');
+			$(this.el).append('<div class="link" id="submitButton">Submit</div>');
+			$(this.el).on('click', '#submitButton', function() {
+				console.log('DEBUG: DepositPanel: render(): submit button clicked');
+				var val = $('#depositInput').val();
+				if (!isNaN(val)) {
+					console.log('%% balance ' + isNaN(model.get('balance')));
+					console.log('%% val ' + isNaN(val));
+					console.log('%% sum ' + isNaN(model.get('balance') + val));
+					model.set('balance', model.get('balance') + (+val));
+					App.CURRENT.addTransaction(new App.Transaction({
+						type: 'Deposit',
+						amount: val,
+						account: model.get('id')
+					}));
+				}
+				self.close();
+			});
+			$(this.el).append('<div class="link" id="cancelButton">Cancel</div>');
+			$(this.el).on('click', '#cancelButton', function() {
+				console.log('DEBUG: DepositPanel: render(): cancel button clicked');
+				self.close();
+			});
+			;
+			$('article').fadeOut(300);
+			if ($('#' + this.id).length) {
+				$('#' + this.id).fadeOut(300, function() {
+					$('#' + this.id).remove();
+				});
+			}
+			$('body').append(this.el);
+			$(this.el).delay(300).fadeIn(300);
+
+		},
+		close : function() {
+			console.log('DEBUG: DepositPanel: close(): closing the panel');
 			$(this.el).fadeOut(300, function() {
 				$(this.el).remove();
 				$('article').fadeIn(300);
