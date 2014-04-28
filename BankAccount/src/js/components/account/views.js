@@ -16,6 +16,7 @@ $(function() {
 			});
 			console.log('DEBUG: AccountView: render(): instantiating TransactionsListView');
 			var transactionsListView = new App.TransactionsListView({
+				model : this.model,
 				collection : this.model.get('transactions')
 			});
 			console.log('DEBUG: AccountView: render(): instantiating WithdrawButton');
