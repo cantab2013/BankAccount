@@ -13,7 +13,6 @@ $(function() {
 			amount : 0,
 			date : 0,
 		},
-		urlRoot : '/transactions',
 		initialize : function() {
 			this.set('date', new Date().toUTCString());
 		}

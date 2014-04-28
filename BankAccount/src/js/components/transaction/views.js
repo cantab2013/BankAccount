@@ -39,16 +39,17 @@ $(function() {
 			console.log('DEBUG: TransactionsListView: initialize(): rendering TransactionsListView with model(id): ' + this.model);
 			$(this.el).empty();
 			console.log('DEBUG: TransactionsListView: initialize(): collection size: ' + this.collection.length);
-			$(this.el).append('<tr class="header"><td>Type</td><td>Account</td><td>Amount</td></tr>');
+			$(this.el).append('<thead><tr class="header"><td>Type</td><td>Account</td><td>Amount</td></tr></thead>');
+			$(this.el).append('<tbody>');
 			for (var i = 0; i < this.collection.length; i++) {
-				console.log(i);
-//				if (this.collection.at(i).get('account') != 'none') {
+				if (this.collection.at(i).get('account') == this.model.get('id')) {
 					$(this.el).append(new App.TransactionView({
 						model : this.collection.at(i)
 					}).el);
-//				}
+				}
 			}
 			;
+			$(this.el).append('</tbody>');
 		},
 		initialize : function() {
 			console.log('DEBUG: TransactionsListView: initialize(): initializing');
