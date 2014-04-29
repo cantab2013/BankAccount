@@ -31,8 +31,10 @@ $(function() {
 			$(this.el).append(balanceView.el);
 			console.log('DEBUG: AccountView: render(): appending TransactionsListView');
 			$(this.el).append(transactionsListView.el);
-			$(transactionsListView.el).dataTable();
-			$(transactionsListView.el).css('width','100%');
+			$(transactionsListView.el).dataTable({
+				"aaSorting": [[0,'desc']]
+			});
+			$(transactionsListView.el).css('width', '100%');
 
 			console.log('DEBUG: AccountView: render(): appending WithdrawButton');
 			$('nav').append(withdrawButton.el);
