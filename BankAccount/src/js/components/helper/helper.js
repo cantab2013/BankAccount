@@ -93,6 +93,7 @@ $(function() {
 				console.log('DEBUG: DepositButon: initialize(): deposit button already exists, removing it.');
 				$('#' + this.id).remove();
 			}
+			
 			this.render();
 		}
 	});
@@ -145,7 +146,8 @@ $(function() {
 			});
 		},
 		initialize : function() {
-			this.render();
+			$('#depositPanel').remove();
+			if (!$('#' + this.id).length) this.render();
 		}
 	});
 	
@@ -200,7 +202,8 @@ $(function() {
 			});
 		},
 		initialize : function() {
-			this.render();
+			$('#withdrawPanel').remove();
+			if (!$('#' + this.id).length) this.render();
 		}
 	});
 });

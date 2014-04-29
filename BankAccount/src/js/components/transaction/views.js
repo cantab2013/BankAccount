@@ -34,6 +34,7 @@ $(function() {
 	// view for a collection of transactions
 	App.TransactionsListView = Backbone.View.extend({
 		tagName : 'table',
+		className : 'tablesorter',
 		id : 'transactionsList',
 		render : function() {
 			console.log('DEBUG: TransactionsListView: initialize(): rendering TransactionsListView with model(id): ' + this.model);

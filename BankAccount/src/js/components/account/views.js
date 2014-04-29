@@ -31,6 +31,8 @@ $(function() {
 			$(this.el).append(balanceView.el);
 			console.log('DEBUG: AccountView: render(): appending TransactionsListView');
 			$(this.el).append(transactionsListView.el);
+			$(transactionsListView.el).tablesorter();
+
 			console.log('DEBUG: AccountView: render(): appending WithdrawButton');
 			$('nav').append(withdrawButton.el);
 			console.log('DEBUG: AccountView: render(): appending DepositButton');
@@ -55,6 +57,7 @@ $(function() {
 		initialize : function() {
 			console.log('DEBUG: AccountView: initialize(): initializing AccountView');
 			this.render();
+			$('table').tablesorter();
 		}
 	});
 
@@ -92,7 +95,7 @@ $(function() {
 						$('#focusView').remove();
 						App.CURRENT.close();
 						next.render();
-						$('#modifyPanel').remove();
+						$('.modifyPanel').remove();
 					}
 				}
 			});

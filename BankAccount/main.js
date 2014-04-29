@@ -5,9 +5,9 @@ $(document).ready(function() {
 	 * 
 	 * 
 	 */
-	
+
 	/** CREATE MODELS & LOADERS FOR EACH PART OF THE APP * */
-	
+
 	var savingsModel = new App.AccountModel({
 		css : 'src/resources/css/components/savings.css',
 		id : 'Savings',
@@ -44,5 +44,5 @@ $(document).ready(function() {
 	/** OPEN DEFAULT PAGE * */
 
 	savingsLoader.render();
-	
+
 });
