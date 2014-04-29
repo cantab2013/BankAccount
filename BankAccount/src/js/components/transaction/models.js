@@ -13,9 +13,6 @@ $(function() {
 			amount : 0,
 			date : 0,
 		},
-		initialize : function() {
-			this.set('date', new Date().toUTCString());
-		}
 	});
 
 });

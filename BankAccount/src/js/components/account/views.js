@@ -48,6 +48,7 @@ $(function() {
 		},
 		addTransaction : function(transaction) {
 			var self = this;
+			transaction.set('date',new Date().toUTCString());
 			App.CURRENT.model.get('transactions').create(transaction.toJSON(), {
 				success : function() {
 					self.update();

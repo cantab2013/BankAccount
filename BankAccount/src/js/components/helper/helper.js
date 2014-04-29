@@ -120,7 +120,7 @@ $(function() {
 					App.CURRENT.addTransaction(new App.Transaction({
 						type : 'Withdrawal',
 						amount : val,
-						account : model.get('id')
+						account : model.get('id'),
 					}));
 				}
 				self.close();
