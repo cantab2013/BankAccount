@@ -44,9 +44,17 @@ $(function() {
 			$(this.el).append('<tbody>');
 			for (var i = 0; i < this.collection.length; i++) {
 				if (this.collection.at(i).get('account') == this.model.get('id')) {
-					$(this.el).append(new App.TransactionView({
-						model : this.collection.at(i)
-					}).el);
+					if (i % 2 == 0) {
+						$(this.el).append(new App.TransactionView({
+							model : this.collection.at(i),
+							className : 'blue'
+						}).el);
+					} else {
+						$(this.el).append(new App.TransactionView({
+							model : this.collection.at(i),
+							className : 'gray'
+						}).el);
+					}
 				}
 			}
 			;
@@ -101,17 +109,16 @@ $(function() {
 			};
 		},
 		initialize : function() {
-			$('article').fadeOut(300);
+			$('article').hide();
 			$('#focusView').remove();
 			$('body').append('<div id="focusView"></div>');
 			this.el = '#focusView';
 			this.render();
 		},
 		close : function() {
-			$(this.el).fadeOut(300, function() {
-				$('article').fadeIn(300);
-			});
 			$(this.el).remove();
+			$('article').show();
+
 		}
 	});
 

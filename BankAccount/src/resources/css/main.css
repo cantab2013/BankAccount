@@ -3,7 +3,7 @@
 html {
 	background: gainsboro;
 	height: 100%;
-	width:100%;
+	width: 100%;
 }
 
 body {
@@ -15,14 +15,17 @@ body {
 	overflow: scroll;
 }
 
-#withdrawInput, #depositInput {
+#withdrawInput,#depositInput {
 	padding: .5em;
 	margin-bottom: 2em;
 	text-align: center;
 }
+
 #operationLabel {
+	
 }
-#withdrawPanel, #depositPanel {
+
+#withdrawPanel,#depositPanel {
 	width: 25%;
 	margin-left: 37.5%;
 }
@@ -70,15 +73,42 @@ h1 {
 }
 
 #transactionsList {
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#transactionsList_wrapper {
 	width: 100%;
 	padding-top: 1em;
+	padding-bottom: 1em;
+	clear: both;
+}
+
+#transactionsList_previous {
+	float: left;
+}
+.gray {
+	background: rgb(210,210,210);
+}
+#transactionsList_next {
+	float: right;
+}
+
+#transactionsList_length {
+	float:left;
+}
+
+#transactionsList_filter {
+	float: right;
 }
 
 tr,th {
 	width: 100%;
 	text-indent: 1em;
 }
-
+#balanceView {
+	width:100%;
+}
 .header {
 	background: lightBlue;
 	text-align: center;

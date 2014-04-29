@@ -24,6 +24,9 @@ $(function() {
 		},
 		initialize : function() {
 			this.render();
+			$(this.el).on('click', function() {
+				$('article').show()
+			});
 			$(this.el).addClass('navElement');
 		}
 	});
@@ -93,7 +96,7 @@ $(function() {
 				console.log('DEBUG: DepositButon: initialize(): deposit button already exists, removing it.');
 				$('#' + this.id).remove();
 			}
-			
+
 			this.render();
 		}
 	});
@@ -115,9 +118,9 @@ $(function() {
 				if (!isNaN(val)) {
 					model.set('balance', model.get('balance') - (+val));
 					App.CURRENT.addTransaction(new App.Transaction({
-						type: 'Withdrawal',
-						amount: val,
-						account: model.get('id')
+						type : 'Withdrawal',
+						amount : val,
+						account : model.get('id')
 					}));
 				}
 				self.close();
@@ -128,29 +131,28 @@ $(function() {
 				self.close();
 			});
 			;
-			$('article').fadeOut(300);
+			$('article').hide();
 			if ($('#' + this.id).length) {
-				$('#' + this.id).fadeOut(300, function() {
-					$('#' + this.id).remove();
-				});
+				$('#' + this.id).hide();
+				$('#' + this.id).remove();
 			}
 			$('body').append(this.el);
-			$(this.el).delay(300).fadeIn(300);
+			$(this.el).show();
 
 		},
 		close : function() {
 			console.log('DEBUG: WithdrawPanel: close(): closing the panel');
-			$(this.el).fadeOut(300, function() {
-				$(this.el).remove();
-				$('article').fadeIn(300);
-			});
+			$(this.el).hide();
+			$(this.el).remove();
+			$('article').show();
 		},
 		initialize : function() {
 			$('#depositPanel').remove();
-			if (!$('#' + this.id).length) this.render();
+			if (!$('#' + this.id).length)
+				this.render();
 		}
 	});
-	
+
 	// view for deposit panel
 	App.DepositPanel = Backbone.View.extend({
 		id : 'depositPanel',
@@ -171,9 +173,9 @@ $(function() {
 					console.log('%% sum ' + isNaN(model.get('balance') + val));
 					model.set('balance', model.get('balance') + (+val));
 					App.CURRENT.addTransaction(new App.Transaction({
-						type: 'Deposit',
-						amount: val,
-						account: model.get('id')
+						type : 'Deposit',
+						amount : val,
+						account : model.get('id')
 					}));
 				}
 				self.close();
@@ -184,26 +186,25 @@ $(function() {
 				self.close();
 			});
 			;
-			$('article').fadeOut(300);
+			$('article').hide();
 			if ($('#' + this.id).length) {
-				$('#' + this.id).fadeOut(300, function() {
-					$('#' + this.id).remove();
-				});
+				$('#' + this.id).hide();
+				$('#' + this.id).remove();
 			}
 			$('body').append(this.el);
-			$(this.el).delay(300).fadeIn(300);
+			$(this.el).show();
 
 		},
 		close : function() {
 			console.log('DEBUG: DepositPanel: close(): closing the panel');
-			$(this.el).fadeOut(300, function() {
-				$(this.el).remove();
-				$('article').fadeIn(300);
-			});
+			$(this.el).hide();
+			$(this.el).remove();
+			$('article').show();
 		},
 		initialize : function() {
 			$('#withdrawPanel').remove();
-			if (!$('#' + this.id).length) this.render();
+			if (!$('#' + this.id).length)
+				this.render();
 		}
 	});
 });

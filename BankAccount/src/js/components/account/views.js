@@ -31,7 +31,8 @@ $(function() {
 			$(this.el).append(balanceView.el);
 			console.log('DEBUG: AccountView: render(): appending TransactionsListView');
 			$(this.el).append(transactionsListView.el);
-			$(transactionsListView.el).tablesorter();
+			$(transactionsListView.el).dataTable();
+			$(transactionsListView.el).css('width','100%');
 
 			console.log('DEBUG: AccountView: render(): appending WithdrawButton');
 			$('nav').append(withdrawButton.el);
@@ -46,7 +47,7 @@ $(function() {
 		addTransaction : function(transaction) {
 			var self = this;
 			App.CURRENT.model.get('transactions').create(transaction.toJSON(), {
-				success: function() {
+				success : function() {
 					self.update();
 				}
 			});
@@ -57,7 +58,6 @@ $(function() {
 		initialize : function() {
 			console.log('DEBUG: AccountView: initialize(): initializing AccountView');
 			this.render();
-			$('table').tablesorter();
 		}
 	});
 
@@ -65,16 +65,13 @@ $(function() {
 		el : 'article',
 		render : function() {
 			var self = this;
-			$(this.el).fadeOut(300, function() {
-				if (!(typeof App.CURRENT === 'undefined'))
-					App.CURRENT.close();
-				App.CURRENT = self;
-				self.buildAccount(self.model);
-				$(self.el).prepend(new App.ResourceView({
-					model : self.model
-				}).el);
-				$(self.el).fadeIn(300);
-			});
+			if (!(typeof App.CURRENT === 'undefined'))
+				App.CURRENT.close();
+			App.CURRENT = self;
+			self.buildAccount(self.model);
+			$(self.el).prepend(new App.ResourceView({
+				model : self.model
+			}).el);
 		},
 		buildAccount : function(model) {
 			console.log('DEBUG: AccountLoader: buildAccount(): instantiating AccountView');
