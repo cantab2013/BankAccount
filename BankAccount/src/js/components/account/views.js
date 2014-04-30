@@ -25,7 +25,7 @@ $(function() {
 				type : 'Withdraw',
 				inputId : 'withdrawInput',
 				viewId : 'withdrawPanel',
-				buttonId: 'withdrawButton',
+				buttonId : 'withdrawButton',
 			});
 			console.log('DEBUG: AccountView: render(): instantiating DepositButton');
 			var depositButton = new App.ModifyButton({
@@ -33,14 +33,14 @@ $(function() {
 				type : 'Deposit',
 				inputId : 'depositInput',
 				viewId : 'depositPanel',
-				buttonId: 'depositButton',
+				buttonId : 'depositButton',
 			});
 			console.log('DEBUG: AccountView: render(): appending BalanceView');
 			$(this.el).append(balanceView.el);
 			console.log('DEBUG: AccountView: render(): appending TransactionsListView');
 			$(this.el).append(transactionsListView.el);
 			$(transactionsListView.el).dataTable({
-				"aaSorting": [[3,'desc']]
+				"aaSorting" : [ [ 2, 'desc' ] ]
 			});
 			$(transactionsListView.el).css('width', '100%');
 
@@ -56,7 +56,7 @@ $(function() {
 		},
 		addTransaction : function(transaction) {
 			var self = this;
-			transaction.set('date',new Date().toUTCString());
+			transaction.set('date', new Date().toUTCString());
 			App.CURRENT.model.get('transactions').create(transaction.toJSON(), {
 				success : function() {
 					self.update();
@@ -117,5 +117,5 @@ $(function() {
 		}
 
 	});
-	
+
 });

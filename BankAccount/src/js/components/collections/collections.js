@@ -15,7 +15,7 @@ $(function() {
 			var self = this;
 			this.forEach(function(item) {
 				console.log(item.toJSON());
-			});		
+			});
 		}
 	});
 
