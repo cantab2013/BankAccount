@@ -9,8 +9,8 @@ html {
 }
 
 body {
-	width: 70%;
-	margin-left: 15%;
+	width: 60%;
+	margin-left: 20%;
 	background: white;
 	padding: 1em;
 	border: 1px solid black;
@@ -27,9 +27,13 @@ body {
 	position: fixed;
 	bottom: 0;
 	left: 0;
-	margin-left: 15%;
+	margin-left: 20%;
 	text-indent: 1em;
 	z-index: -99;
+}
+
+#invalidEntry {
+	color: red;
 }
 
 #withdrawPanel,#depositPanel {
