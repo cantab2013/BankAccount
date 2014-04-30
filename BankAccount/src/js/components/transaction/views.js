@@ -9,7 +9,7 @@ $(function() {
 		model : App.Transaction,
 		tagName : 'tr',
 		className : 'link',
-		template : _.template('<td><%= type %></td><td><%= account %></td><td><%= amount %></td><td><%= date %></td></tr>'),
+		template : _.template('<td><%= type %></td><td><%= amount %></td><td><%= date %></td></tr>'),
 		render : function() {
 			$(this.el).html(this.template(this.model.toJSON()));
 		},
@@ -40,7 +40,7 @@ $(function() {
 			console.log('DEBUG: TransactionsListView: initialize(): rendering TransactionsListView with model(id): ' + this.model);
 			$(this.el).empty();
 			console.log('DEBUG: TransactionsListView: initialize(): collection size: ' + this.collection.length);
-			$(this.el).append('<thead><tr class="header"><td>Type</td><td>Account</td><td>Amount</td><td>Date</td></tr></thead>');
+			$(this.el).append('<thead><tr class="header"><td>Type</td><td>Amount</td><td>Date</td></tr></thead>');
 			$(this.el).append('<tbody>');
 			for (var i = 0; i < this.collection.length; i++) {
 				if (this.collection.at(i).get('account') == this.model.get('id')) {
