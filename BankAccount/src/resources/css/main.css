@@ -86,12 +86,14 @@ h1 {
 
 #transactionsList_previous {
 	float: left;
+	cursor: pointer;
 }
-.odd {
+.even {
 	background: rgb(210,210,210);
 }
 #transactionsList_next {
 	float: right;
+	cursor: pointer;
 }
 
 #transactionsList_length {
@@ -100,6 +102,9 @@ h1 {
 
 #transactionsList_filter {
 	float: right;
+}
+thead {
+	cursor: pointer;
 }
 
 tr,th {
@@ -117,6 +122,8 @@ tr,th {
 
 td {
 	width: 20%;
+	padding-top: .5em;
+	padding-bottom: .5em;
 }
 
 .account {

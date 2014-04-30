@@ -25,7 +25,7 @@ $(function() {
 		initialize : function() {
 			this.render();
 			$(this.el).on('click', function() {
-				$('article').show()
+				$('article').show();
 			});
 			$(this.el).addClass('navElement');
 		}
@@ -109,13 +109,13 @@ $(function() {
 			var self = this;
 			var model = this.model;
 			$(this.el).css('text-align', 'center');
-			$(this.el).append('<h3 id="operationLabel">Withdraw:</h3>');
+			$(this.el).append('<h2 id="operationLabel">Withdraw:</h2>');
 			$(this.el).append('<input type="text" id="withdrawInput" name="withdraw">');
-			$(this.el).append('<div class="link" id="submitButton">Submit</div>');
+			$(this.el).append('<h3 class="link" id="submitButton">Submit</h3>');
 			$(this.el).on('click', '#submitButton', function() {
 				console.log('DEBUG: WithdrawPanel: render(): submit button clicked');
-				var val = $('#withdrawInput').val();
-				if (!isNaN(val)) {
+				var val = $('#withdrawInput').val().trim();
+				if (!isNaN(val) && val != "") {
 					model.set('balance', model.get('balance') - (+val));
 					App.CURRENT.addTransaction(new App.Transaction({
 						type : 'Withdrawal',
@@ -125,7 +125,7 @@ $(function() {
 				}
 				self.close();
 			});
-			$(this.el).append('<div class="link" id="cancelButton">Cancel</div>');
+			$(this.el).append('<h3 class="link" id="cancelButton">Cancel</h3>');
 			$(this.el).on('click', '#cancelButton', function() {
 				console.log('DEBUG: WithdrawPanel: render(): cancel button clicked');
 				self.close();
@@ -161,16 +161,13 @@ $(function() {
 			var self = this;
 			var model = this.model;
 			$(this.el).css('text-align', 'center');
-			$(this.el).append('<h3 id="operationLabel">Deposit:</h3>');
+			$(this.el).append('<h2 id="operationLabel">Deposit:</h2>');
 			$(this.el).append('<input type="text" id="depositInput" name="deposit">');
-			$(this.el).append('<div class="link" id="submitButton">Submit</div>');
+			$(this.el).append('<h3 class="link" id="submitButton">Submit</h3>');
 			$(this.el).on('click', '#submitButton', function() {
 				console.log('DEBUG: DepositPanel: render(): submit button clicked');
-				var val = $('#depositInput').val();
-				if (!isNaN(val)) {
-					console.log('%% balance ' + isNaN(model.get('balance')));
-					console.log('%% val ' + isNaN(val));
-					console.log('%% sum ' + isNaN(model.get('balance') + val));
+				var val = $('#depositInput').val().trim();
+				if (!isNaN(val) && val != "") {
 					model.set('balance', model.get('balance') + (+val));
 					App.CURRENT.addTransaction(new App.Transaction({
 						type : 'Deposit',
@@ -180,7 +177,7 @@ $(function() {
 				}
 				self.close();
 			});
-			$(this.el).append('<div class="link" id="cancelButton">Cancel</div>');
+			$(this.el).append('<h3 class="link" id="cancelButton">Cancel</h3>');
 			$(this.el).on('click', '#cancelButton', function() {
 				console.log('DEBUG: DepositPanel: render(): cancel button clicked');
 				self.close();
