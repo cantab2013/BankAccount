@@ -10,19 +10,25 @@ $(document).ready(function() {
 
 	var savingsModel = new App.AccountModel({
 		css : 'src/resources/css/components/savings.css',
-		id : 'Savings',
+		id : 'savingsAccount',
+		buttonId : 'savingsButton',
+		title : 'Savings',
 		interest : 3,
 	});
 
 	var checkingModel = new App.AccountModel({
 		css : 'src/resources/css/components/checking.css',
-		id : 'Checking',
+		id : 'checkingAccount',
+		buttonId : 'checkingButton',
+		title : 'Checking',
 		overDraftProtection : 500
 	});
 
 	var bonusSavingsModel = new App.AccountModel({
 		css : 'src/resources/css/components/bonusSavings.css',
-		id : 'Bonus Savings',
+		id : 'bonusSavingsAccount',
+		buttonId : 'bonusSavingsButton',
+		title : 'Bonus Savings',
 		interest : 3,
 		balance : 5300,
 		bonusPerMonth : 50,
@@ -44,5 +50,12 @@ $(document).ready(function() {
 	/** OPEN DEFAULT PAGE **/
 	
 	savingsLoader.render();
+	
+	/** FOR DEVELOPMENT **/
+	
+	$('html').append('<p id="clearStorage" class="link">Clear Local Storage</p>');
+	$('#clearStorage').click(function() {
+		localStorage.clear();
+	});
 
 });

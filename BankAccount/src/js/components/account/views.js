@@ -66,6 +66,12 @@ $(function() {
 		close : function() {
 			$(this.el).empty();
 		},
+		reload : function() {
+			console.log('DEBUG: AccountView: reload(): reloading account view');
+			this.close();
+			this.render();
+			$(this.el).show();
+		},
 		initialize : function() {
 			console.log('DEBUG: AccountView: initialize(): initializing AccountView');
 			this.render();

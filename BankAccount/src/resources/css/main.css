@@ -4,6 +4,8 @@ html {
 	background: gainsboro;
 	height: 100%;
 	width: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 body {
@@ -21,8 +23,13 @@ body {
 	text-align: center;
 }
 
-#operationLabel {
-	
+#clearStorage {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	margin-left: 15%;
+	text-indent: 1em;
+	z-index: -99;
 }
 
 #withdrawPanel,#depositPanel {

@@ -10,6 +10,8 @@ $(function() {
 		defaults : {
 			css : 'default',
 			id : 'default',
+			title : 'default',
+			buttonId : 'default',
 			balance : 200,
 			interest : 0,
 			overdraftProtection : 0,

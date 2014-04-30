@@ -70,35 +70,14 @@ $(function() {
 			$(this.el).append('<p>' + this.model.get('amount') + '</p>');
 			$(this.el).append('<hr>');
 			$(this.el).append('<p>' + this.model.get('date') + '</p>');
-			var self = this;
-			$(this.el).append('<p class="link">Close</p>').click(function() {
-				close(self);
+			var closeButton = new App.CloseButton({
+				parent : this
 			});
-
-			var Delete = Backbone.View.extend({
-				className : 'link',
-				events : {
-					'click' : 'remove'
-				},
-				remove : function() {
-					this.model.destroy();
-					var reload = App.CURRENT;
-					App.CURRENT.close();
-					reload.render();
-				},
-				render : function() {
-					$(this.el).text('Delete');
-				}
-			});
-			var deleteButton = new Delete({
+			$(this.el).append(closeButton.el);
+			var deleteButton = new App.DeleteButton({
 				model : this.model
 			});
-			deleteButton.render();
 			$(this.el).append(deleteButton.el);
-
-			var close = function(self) {
-				self.close();
-			};
 		},
 		initialize : function() {
 			$('article').hide();
@@ -113,5 +92,4 @@ $(function() {
 
 		}
 	});
-
 });
