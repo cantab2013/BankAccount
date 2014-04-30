@@ -88,21 +88,24 @@ h1 {
 	float: left;
 	cursor: pointer;
 }
+
 .even {
-	background: rgb(210,210,210);
+	background: rgb(210, 210, 210);
 }
+
 #transactionsList_next {
 	float: right;
 	cursor: pointer;
 }
 
 #transactionsList_length {
-	float:left;
+	float: right;
 }
 
 #transactionsList_filter {
-	float: right;
+	float: left;
 }
+
 thead {
 	cursor: pointer;
 }
@@ -111,9 +114,11 @@ tr,th {
 	width: 100%;
 	text-indent: 1em;
 }
+
 #balanceView {
-	width:100%;
+	width: 100%;
 }
+
 .header {
 	background: lightBlue;
 	text-align: center;

@@ -33,16 +33,16 @@ $(document).ready(function() {
 		model : savingsModel
 	});
 
-	var checkingLoader = new App.AccountLoader({
+	new App.AccountLoader({
 		model : checkingModel
 	});
 
-	var bonusSavingsLoader = new App.AccountLoader({
+	new App.AccountLoader({
 		model : bonusSavingsModel
 	});
-
-	/** OPEN DEFAULT PAGE * */
-
+	
+	/** OPEN DEFAULT PAGE **/
+	
 	savingsLoader.render();
 
 });

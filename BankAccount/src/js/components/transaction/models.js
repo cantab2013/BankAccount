@@ -12,7 +12,7 @@ $(function() {
 			account : 'none',
 			amount : 0,
 			date : 0,
-		},
+		}
 	});
 
 });

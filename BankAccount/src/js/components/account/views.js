@@ -20,19 +20,27 @@ $(function() {
 				collection : this.model.get('transactions')
 			});
 			console.log('DEBUG: AccountView: render(): instantiating WithdrawButton');
-			var withdrawButton = new App.WithdrawButton({
-				model : this.model
+			var withdrawButton = new App.ModifyButton({
+				model : this.model,
+				type : 'Withdraw',
+				inputId : 'withdrawInput',
+				viewId : 'withdrawPanel',
+				buttonId: 'withdrawButton',
 			});
 			console.log('DEBUG: AccountView: render(): instantiating DepositButton');
-			var depositButton = new App.DepositButton({
-				model : this.model
+			var depositButton = new App.ModifyButton({
+				model : this.model,
+				type : 'Deposit',
+				inputId : 'depositInput',
+				viewId : 'depositPanel',
+				buttonId: 'depositButton',
 			});
 			console.log('DEBUG: AccountView: render(): appending BalanceView');
 			$(this.el).append(balanceView.el);
 			console.log('DEBUG: AccountView: render(): appending TransactionsListView');
 			$(this.el).append(transactionsListView.el);
 			$(transactionsListView.el).dataTable({
-				"aaSorting": [[0,'desc']]
+				"aaSorting": [[3,'desc']]
 			});
 			$(transactionsListView.el).css('width', '100%');
 
@@ -103,5 +111,5 @@ $(function() {
 		}
 
 	});
-
+	
 });
