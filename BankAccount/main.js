@@ -46,13 +46,13 @@ $(document).ready(function() {
 	new App.AccountLoader({
 		model : bonusSavingsModel
 	});
-	
-	/** OPEN DEFAULT PAGE **/
-	
+
+	/** OPEN DEFAULT PAGE * */
+
 	savingsLoader.render();
-	
-	/** FOR DEVELOPMENT **/
-	
+
+	/** FOR DEVELOPMENT * */
+
 	$('html').append('<p id="clearStorage" class="link">Clear Local Storage</p>');
 	$('#clearStorage').click(function() {
 		localStorage.clear();
