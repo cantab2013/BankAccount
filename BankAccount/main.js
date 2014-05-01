@@ -167,6 +167,8 @@ $(function() {
 
 $(document).ready(function() {
 
-	 _([ AppView.loading(), AppView.load(), AppView.open() ]).chain();
+	AppView.load();
+	
+//	 _([ AppView.loading(), AppView.load(), AppView.open() ]).chain();
 
 });
