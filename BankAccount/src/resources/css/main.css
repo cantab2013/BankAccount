@@ -2,30 +2,22 @@
 
 html {
 	background: gainsboro;
-	height: 100%;
+	height: 80%;
 	width: 100%;
 	margin: 0;
 	padding: 0;
+	overflow: scroll;
 }
 
 body {
 	background: white;
 	padding: 1em;
 	border: 1px solid black;
-	overflow: scroll;
 	width: 800px;
 	margin: 1em auto;
+	top:0;
 	margin-top: 2em;
-}
-
-#loading {
-	position: fixed;
-	width: 20%;
-	margin-left:40%;
-	margin-top:10em;
-	text-align: center;
-	background: white;
-	box-shadow: 0px 0px 50px white;
+	margin-bottom: 2em;
 }
 
 #withdrawInput,#depositInput {
@@ -224,4 +216,18 @@ strong {
 
 .balance {
 	float: right;
+}
+
+/* LOADING BAR */
+#loading {
+	position: fixed;
+	right: 0;
+	left: 0;
+	margin-right: auto;
+	margin-left: auto;
+	margin-top: 10em;
+	min-height: 10em;
+	width: 90%;
+	text-align: center;
+	min-height: 10em;
 }
