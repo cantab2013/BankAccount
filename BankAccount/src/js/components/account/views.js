@@ -2,7 +2,7 @@
  * ACCOUNT VIEWS
  */
 
-$(document).ready(function() {
+$(function() {
 
 	// view for account page
 	App.AccountView = Backbone.View.extend({

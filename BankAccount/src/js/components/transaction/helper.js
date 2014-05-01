@@ -2,7 +2,7 @@
  * TRANSACTION HELPER CLASSES
  */
 
-$(document).ready(function() {
+$(function() {
 
 	// view for transaction focus close button
 	App.CloseButton = Backbone.View.extend({
