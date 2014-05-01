@@ -9,21 +9,21 @@ html {
 }
 
 body {
-	width: 60%;
-	margin-left: 20%;
 	background: white;
 	padding: 1em;
 	border: 1px solid black;
 	overflow: scroll;
+	width: 800px;
+	margin: 1em auto;
+	margin-top: 2em;
 }
 
 #withdrawInput,#depositInput {
 	padding: .5em;
-	margin-bottom: 2em;
 	text-align: center;
 }
 
-#clearStorage {
+#developer {
 	position: fixed;
 	bottom: 0;
 	left: 0;
@@ -66,8 +66,23 @@ nav {
 	color: white;
 }
 
-#modifyPanel {
+.alignRight {
+	float: right;
+}
+
+.alignLeft {
+	float: left;
+}
+
+.modifyPanel,#focusView {
 	text-align: center;
+	position: absolute;
+	top: 25%;
+	left: 0;
+	width: 20%;
+	margin-left: 40%;
+	background: white;
+	border: 1px solid black;
 }
 
 #withdrawPanel {
@@ -126,20 +141,71 @@ tr,th {
 	text-indent: 1em;
 }
 
+#submitButton,#cancelButton {
+	width: 50%;
+}
+
+#submitButton {
+	float: left;
+}
+
+#cancelButton {
+	float: right;
+}
+
 #balanceView {
 	width: 100%;
+}
+
+#operationLabel {
+	text-transform: uppercase;
+	background: lightBlue;
+	padding-top: .5em;
+	padding-bottom: .5em;
 }
 
 .header {
 	background: lightBlue;
 	text-align: center;
-	text-indent: 0;
 }
 
-td {
+strong {
+	font-variant: small-caps;
+}
+
+#transactionsList td {
 	width: 20%;
 	padding-top: .5em;
 	padding-bottom: .5em;
+}
+
+#focusView table {
+	width: 100%;
+	padding-top: 1em;
+	padding-bottom: 1em;
+	padding-left: 2em;
+	padding-right: 2em;
+}
+
+#focusView h4 {
+	width: 50%;
+	margin: 0;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#focusView tr {
+	width: 100%;
+	font-size: 1em;
+}
+
+#focusView td.label {
+	text-align: left;
+	text-indent: 0;
+}
+
+#focusView td.value {
+	text-align: right;
 }
 
 .account {

@@ -2,7 +2,7 @@
  * TRANSACTION HELPER CLASSES
  */
 
-$(function() {
+$(document).ready(function() {
 
 	// view for transaction focus close button
 	App.CloseButton = Backbone.View.extend({
@@ -13,6 +13,7 @@ $(function() {
 		},
 		render : function() {
 			$(this.el).html('Close');
+			$(this.el).addClass('alignRight');
 		},
 		initialize : function() {
 			this.render();
@@ -38,6 +39,7 @@ $(function() {
 		},
 		render : function() {
 			$(this.el).text('Delete');
+			$(this.el).addClass('alignLeft');
 		},
 		initialize : function() {
 			this.render();
@@ -67,6 +69,7 @@ $(function() {
 				console.log('DEBUG: DepositButon: openDepositPanel(): deposit button clicked, opening deposit panel');
 				console.log(self.model.get('id'));
 				new App.ModifyPanel(options);
+				$('#focusView').remove();
 			});
 		}
 	});
@@ -80,7 +83,9 @@ $(function() {
 			$(this.el).attr('id', options.viewId);
 			$(this.el).css('text-align', 'center');
 			$(this.el).append('<h2 id="operationLabel">' + options.type + '</h2>');
-			$(this.el).append('<input type="text" id="' + options.inputId + '">');
+			$(this.el).append('<hr>');
+			$(this.el).append('<h2><input type="text" id="' + options.inputId + '"></h2>');
+			$(this.el).append('<hr>');
 			$(this.el).append('<h3 class="link" id="submitButton">Submit</h3>');
 			$(this.el).on('click', '#submitButton', function() {
 				console.log('DEBUG: ModifyPanel: render(): submit button clicked');

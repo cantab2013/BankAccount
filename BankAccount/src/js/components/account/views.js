@@ -2,7 +2,7 @@
  * ACCOUNT VIEWS
  */
 
-$(function() {
+$(document).ready(function() {
 
 	// view for account page
 	App.AccountView = Backbone.View.extend({
@@ -48,7 +48,7 @@ $(function() {
 			$('nav').append(withdrawButton.el);
 			console.log('DEBUG: AccountView: render(): appending DepositButton');
 			$('nav').append(depositButton.el);
-
+			$(this.el).show();
 		},
 		update : function() {
 			this.close();
@@ -64,6 +64,7 @@ $(function() {
 			});
 		},
 		close : function() {
+			$(this.el).hide();
 			$(this.el).empty();
 		},
 		reload : function() {
