@@ -94,7 +94,8 @@ $(function() {
 					App.CURRENT.addTransaction(new App.Transaction({
 						type : options.type,
 						amount : val,
-						account : model.get('id')
+						account : model.get('id'),
+						title : model.get('title')
 					}));
 					self.close();
 				} else {

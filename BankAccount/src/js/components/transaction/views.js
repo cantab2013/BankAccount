@@ -66,7 +66,7 @@ $(function() {
 		render : function() {
 			console.log('DEBUG: FocusView: render(): Rendering Focus View');
 			$(this.el).append('<h2>' + this.model.get('type') + '</h2>');
-			$(this.el).append('<h3>' + this.model.get('account') + '</h3>');
+			$(this.el).append('<h3>' + this.model.get('title') + '</h3>');
 			$(this.el).append('<p>' + this.model.get('amount') + '</p>');
 			$(this.el).append('<hr>');
 			$(this.el).append('<p>' + this.model.get('date') + '</p>');
