@@ -78,6 +78,7 @@ $(function() {
 		}
 	});
 
+	// view that handles loading of each view
 	App.AccountLoader = Backbone.View.extend({
 		el : 'article',
 		render : function() {

@@ -56,6 +56,7 @@ $(document).ready(function() {
 	$('html').append('<p id="clearStorage" class="link">Clear Local Storage</p>');
 	$('#clearStorage').click(function() {
 		localStorage.clear();
+		window.location.reload();
 	});
 
 });
