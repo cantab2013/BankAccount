@@ -83,7 +83,7 @@ $(function() {
 						initialize : function() {
 							this.render();
 						}
-					})
+					});
 			$(this.el).append(new InfoTable().el);
 			$(this.el).append('<hr>');
 			$(this.el).append('<p>' + this.model.get('date') + '</p>');
@@ -111,3 +111,4 @@ $(function() {
 		}
 	});
 });
+

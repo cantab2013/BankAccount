@@ -158,12 +158,8 @@ $(document).ready(function() {
 		}
 	};
 	
-//	setTimeout(Launcher.loading(),0);
-//	setTimeout(Launcher.load(), 6000);
-//	setTimeout(Launcher.open(),8000);
-	
 	Launcher.loading();
 	Launcher.load();
-	_.defer(Launcher.open());
+	Launcher.open();
 	
 });
