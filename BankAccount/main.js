@@ -1,44 +1,51 @@
+/**
+ * HOW DOES THIS WORK?
+ */
+
 $(document).ready(function() {
 
-	/** MAIN OBJECT * */
+	/*
+	 * MAIN OBJECT
+	 */
 
-	// *
-	// * AppView has three methods
-	// *
-	// * - loading:
-	// * - - presents loading screen
-	// * - load:
-	// * - - actually loads the app
-	// * - open:
-	// * - - fades out loading screen & fades in body
-	// *
-	// * The final function in this script calls these functions
-	// *
-	// *
+	// 'Launcher' contains three methods, one for showing the loading message, one
+	// for actually loading the application, and one for showing the application
+	// after it has finished loading
+	
 	Launcher = {
 
-		loading : function() {
+		// shows the loading screen, accepts a callback. in this case, the
+		// callback will be the Launcher.loadApp() method (see the last function
+		// call in this script)
 
-			/** presents loading message * */
+		showLoading : function(callback) {
+
+			// append the loading message to the page
 
 			$('html').append('<div id="loading"><p>Loading... Please Wait.</p></div>');
 
+			// callback function. setTimeout() with a duration of zero
+			// effectively adds the function inside to the end of the execution
+			// queue so that functions before it can finish. this is used for
+			// all three steps of the launch sequence
+
+			setTimeout(function() {
+				if (typeof callback == 'function')
+					callback(Launcher.showApp);
+			}, 0);
+
 		},
 
-		open : function() {
+		// loads the entire application. this function creates the top-level
+		// backbone views (AccountLoader) for each account, and renders the
+		// default view. this function can take a while due to the fetching of
+		// every transaction from local storage (the actual fetching doesn't
+		// happen here, it happens further down the line when the AccountView
+		// builds the TransactionsListView)
 
-			/** presents application and removes loading screen * */
+		loadApp : function(callback) {
 
-			$('#loading').fadeOut(function() {
-				$('body').fadeIn(400);
-			});
-		},
-
-		load : function() {
-
-			/** CREATE MODELS & LOADERS FOR EACH PART OF THE APP * */
-
-			/* App.AccountModel is the base account */
+			/* create models for each account */
 
 			// create checking model directly from App.AccountModel
 			var checkingModel = new App.AccountModel({
@@ -79,30 +86,40 @@ $(document).ready(function() {
 
 			/* create loaders for each model */
 
+			// top-level view for savings
 			var savingsLoader = new App.AccountLoader({
 				model : savingsModel
 			});
 
+			// top-level view for checking
 			new App.AccountLoader({
 				model : checkingModel
 			});
 
+			// top-level view for bonus savings
 			new App.AccountLoader({
 				model : bonusSavingsModel
 			});
 
-			/** OPEN DEFAULT PAGE * */
+			/*
+			 * OPEN DEFAULT PAGE
+			 */
 
 			savingsLoader.render();
 
-			/** FOR DEVELOPMENT * */
+			/*
+			 * FOR DEVELOPMENT PURPOSES
+			 */
 
+			// add a button to clear the local storage data
 			$('html').append('<div id="developer"></div>');
 			$('#developer').append('<p id="clearStorage" class="link">Clear Local Storage</p>');
 			$('#clearStorage').click(function() {
 				localStorage.clear();
 				window.location.reload();
 			});
+
+			// add a button to genereate some random transactions
 			$('#developer').append('<p id="generateTransactions" class="link">Generate 50 Transactions</p>');
 			$('#generateTransactions').click(function() {
 				console.log('DEBUG: main.js: generating random transactions');
@@ -155,11 +172,42 @@ $(document).ready(function() {
 				}
 				window.location.reload();
 			});
+
+			// the function that was passed into Launcher.loadApp was
+			// Launcher.showApp, so once we reach this point and execute the
+			// callback, everything is fully loaded and should fade in smoothly.
+			// (refer to the first callback method in Launcher.showLoading() to
+			// see what the point of setTimeout() with a duration of 0 is)
+
+			setTimeout(function() {
+				if (typeof callback == 'function')
+					callback();
+			}, 0);
+
+		},
+
+		// fades out the loading text and fades in the fully loaded application
+
+		showApp : function() {
+
+			// another example of a callback method - after the loading text
+			// fades out fully, we fade in the body element
+
+			$('#loading').fadeOut(function() {
+				$('body').fadeIn(400);
+			});
 		}
 	};
-	
-	Launcher.loading();
-	Launcher.load();
-	Launcher.open();
-	
+
+	/*
+	 * BEGIN APP LAUNCH SEQUENCE
+	 */
+
+	// in order to have 'showLoading()', 'loadApp()', and 'showApp()' run
+	// sequentially (as opposed to synchronously), we must utilize callbacks.
+	// Here, we call showLoading() with loadApp passed in as a parameter. Notice
+	// that there are no parenthesis, so the function doesnt get called and is
+	// instead passed in as a variable.
+	Launcher.showLoading(Launcher.loadApp);
+
 });
