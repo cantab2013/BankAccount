@@ -8,10 +8,10 @@ $(document).ready(function() {
 	 * MAIN OBJECT
 	 */
 
-	// 'Launcher' contains three methods, one for showing the loading message, one
+	// 'Launcher' contains three methods, one for showing the loading message,
+	// one
 	// for actually loading the application, and one for showing the application
 	// after it has finished loading
-	
 	Launcher = {
 
 		// shows the loading screen, accepts a callback. in this case, the
@@ -208,6 +208,7 @@ $(document).ready(function() {
 	// Here, we call showLoading() with loadApp passed in as a parameter. Notice
 	// that there are no parenthesis, so the function doesnt get called and is
 	// instead passed in as a variable.
+	
 	Launcher.showLoading(Launcher.loadApp);
 
 });
