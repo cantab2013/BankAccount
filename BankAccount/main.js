@@ -1,9 +1,10 @@
-$(function() {
+$(document).ready(function() {
 
 	/** MAIN OBJECT * */
 
 	// *
 	// * AppView has three methods
+	// *
 	// * - loading:
 	// * - - presents loading screen
 	// * - load:
@@ -14,14 +15,13 @@ $(function() {
 	// * The final function in this script calls these functions
 	// *
 	// *
-	
-	AppView = {
+	Launcher = {
 
 		loading : function() {
 
-			/** presents loading screen * */
-			$('body').css('display','non');
-			$('html').append('<div id="loading"><p>Loading..</p></div>');
+			/** presents loading message * */
+
+			$('html').append('<div id="loading"><p>Loading... Please Wait.</p></div>');
 
 		},
 
@@ -95,10 +95,6 @@ $(function() {
 
 			savingsLoader.render();
 
-			/** CALLBACK FOR PAGE LOAD **/
-			
-			AppView.open();
-			
 			/** FOR DEVELOPMENT * */
 
 			$('html').append('<div id="developer"></div>');
@@ -160,15 +156,14 @@ $(function() {
 				window.location.reload();
 			});
 		}
-
 	};
-
-});
-
-$(document).ready(function() {
-
-	AppView.load();
 	
-//	 _([ AppView.loading(), AppView.load(), AppView.open() ]).chain();
-
+//	setTimeout(Launcher.loading(),0);
+//	setTimeout(Launcher.load(), 6000);
+//	setTimeout(Launcher.open(),8000);
+	
+	Launcher.loading();
+	Launcher.load();
+	_.defer(Launcher.open());
+	
 });
