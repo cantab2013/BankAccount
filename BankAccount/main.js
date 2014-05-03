@@ -1,5 +1,11 @@
 /**
- * HOW DOES THIS WORK?
+ * MAIN.JS
+ * 
+ * This script defines the Launcher object. Launcher contains three methods -
+ * showLoading(), loadApp(), and showApp(). These three methods are called
+ * sequentially using callbacks to show a loading screen until the app is fully
+ * loaded, and then present the app.
+ * 
  */
 
 $(document).ready(function() {
@@ -9,9 +15,8 @@ $(document).ready(function() {
 	 */
 
 	// 'Launcher' contains three methods, one for showing the loading message,
-	// one
-	// for actually loading the application, and one for showing the application
-	// after it has finished loading
+	// one for actually loading the application, and one for showing the
+	// application after it has finished loading
 	Launcher = {
 
 		// shows the loading screen, accepts a callback. in this case, the
@@ -171,7 +176,7 @@ $(document).ready(function() {
 
 });
 
-/** LOCAL STORAGE ALERT **/
+/** LOCAL STORAGE ALERT * */
 
 function showAlert() {
 	setTimeout(function() {
@@ -182,7 +187,7 @@ function showAlert() {
 			}, 3000);
 		});
 	}, 1000);
-	
+
 }
 
 /** CLEAR STORAGE * */
