@@ -8,7 +8,7 @@ $(function() {
 	App.AccountModel = Backbone.Model.extend({
 		localStorage : new Store('accounts'),
 		defaults : {
-			css : 'default',
+			css : 'default', 	// this is only used when we have extra CSS files per account
 			id : 'default',
 			title : 'default',
 			buttonId : 'default',
@@ -25,8 +25,10 @@ $(function() {
 		},
 		fetch : function() {
 			this.set(JSON.parse(localStorage.getItem(this.id)));
+			this.set('css','undefined');
 		},
 		save : function(attributes) {
+			if (this.get('css') != 'undefined') this.unset('css');
 			localStorage.setItem(this.id, JSON.stringify(this.toJSON()));
 		},
 		destroy : function(options) {

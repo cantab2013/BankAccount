@@ -9,7 +9,8 @@ $(function() {
 		className : 'currentResources',
 		template : _.template('<link rel="stylesheet" href="<%= css %>">'),
 		render : function() {
-			$(this.el).html(this.template(this.model.toJSON()));
+			if (this.model.get('css') != 'undefined')
+				$(this.el).html(this.template(this.model.toJSON()));
 		},
 		initialize : function() {
 			this.render();

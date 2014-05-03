@@ -30,8 +30,7 @@ $(document).ready(function() {
 			// all three steps of the launch sequence
 
 			setTimeout(function() {
-				if (typeof callback == 'function')
-					callback(Launcher.showApp);
+				callback(Launcher.showApp);
 			}, 0);
 
 		},
@@ -102,6 +101,14 @@ $(document).ready(function() {
 			});
 
 			/*
+			 * ADD RANDOM TRANSACTIONS IF LOCALSTORAGE IS EMPTY
+			 */
+
+			if (localStorage.length <= 3) {
+				showAlert();
+			}
+
+			/*
 			 * OPEN DEFAULT PAGE
 			 */
 
@@ -111,66 +118,19 @@ $(document).ready(function() {
 			 * FOR DEVELOPMENT PURPOSES
 			 */
 
-			// add a button to clear the local storage data
+			// add developer section
 			$('html').append('<div id="developer"></div>');
+
+			// add clear storage button
 			$('#developer').append('<p id="clearStorage" class="link">Clear Local Storage</p>');
 			$('#clearStorage').click(function() {
-				localStorage.clear();
-				window.location.reload();
+				clearStorage();
 			});
 
 			// add a button to genereate some random transactions
 			$('#developer').append('<p id="generateTransactions" class="link">Generate 50 Transactions</p>');
 			$('#generateTransactions').click(function() {
-				console.log('DEBUG: main.js: generating random transactions');
-				for (var i = 0; i < 50; i++) {
-					var account = Math.floor((Math.random() * 3));
-					console.log('DEBUG: main.js: account: ' + account);
-					var amount = Math.floor(Math.random() * 999);
-					console.log('DEBUG: main.js: amount: ' + amount);
-					var type = Math.floor(Math.random() * 2);
-					console.log('DEBUG: main.js: type: ' + type);
-					var transaction = new App.Transaction();
-					transaction.set('amount', amount);
-					transaction.set('date', new Date().toUTCString());
-					switch (type) {
-					case 0:
-						transaction.set('type', 'Withdraw');
-						break;
-					case 1:
-						transaction.set('type', 'Deposit');
-					}
-					;
-					switch (account) {
-					case 0:
-						transaction.set('account', 'savingsAccount');
-						transaction.set('title', 'Savings');
-						if (type == 0)
-							savingsModel.set('balance', savingsModel.get('balance') - (+amount));
-						else
-							savingsModel.set('balance', savingsModel.get('balance') + (+amount));
-						break;
-					case 1:
-						transaction.set('account', 'checkingAccount');
-						transaction.set('title', 'Checking');
-						if (type == 0)
-							checkingModel.set('balance', checkingModel.get('balance') - (+amount));
-						else
-							checkingModel.set('balance', checkingModel.get('balance') + (+amount));
-						break;
-					case 2:
-						transaction.set('account', 'bonusSavingsAccount');
-						transaction.set('title', 'Bonus Savings');
-						if (type == 0)
-							bonusSavingsModel.set('balance', bonusSavingsModel.get('balance') - (+amount));
-						else
-							bonusSavingsModel.set('balance', bonusSavingsModel.get('balance') + (+amount));
-						break;
-					}
-					;
-					transaction.save();
-				}
-				window.location.reload();
+				generate(savingsModel, checkingModel, bonusSavingsModel);
 			});
 
 			// the function that was passed into Launcher.loadApp was
@@ -180,8 +140,7 @@ $(document).ready(function() {
 			// see what the point of setTimeout() with a duration of 0 is)
 
 			setTimeout(function() {
-				if (typeof callback == 'function')
-					callback();
+				callback();
 			}, 0);
 
 		},
@@ -208,7 +167,81 @@ $(document).ready(function() {
 	// Here, we call showLoading() with loadApp passed in as a parameter. Notice
 	// that there are no parenthesis, so the function doesnt get called and is
 	// instead passed in as a variable.
-	
 	Launcher.showLoading(Launcher.loadApp);
 
 });
+
+/** LOCAL STORAGE ALERT **/
+
+function showAlert() {
+	setTimeout(function() {
+		$('html').append('<div id="storageAlert">Local Storage is Empty. Click "Generate 50 Transactions"</div>');
+		$('#storageAlert').fadeIn(500, function() {
+			setTimeout(function() {
+				$('#storageAlert').fadeOut(1000);
+			}, 3000);
+		});
+	}, 1000);
+	
+}
+
+/** CLEAR STORAGE * */
+
+function clearStorage() {
+	localStorage.clear();
+	location.reload();
+};
+
+/** GENERATE RANDOM TRANSACTIONS * */
+
+function generate(savingsModel, checkingModel, bonusSavingsModel) {
+	console.log('DEBUG: main.js: generating random transactions');
+	for (var i = 0; i < 50; i++) {
+		var account = Math.floor((Math.random() * 3));
+		console.log('DEBUG: main.js: account: ' + account);
+		var amount = Math.floor(Math.random() * 999);
+		console.log('DEBUG: main.js: amount: ' + amount);
+		var type = Math.floor(Math.random() * 2);
+		console.log('DEBUG: main.js: type: ' + type);
+		var transaction = new App.Transaction();
+		transaction.set('amount', amount);
+		transaction.set('date', new Date().toUTCString());
+		switch (type) {
+		case 0:
+			transaction.set('type', 'Withdraw');
+			break;
+		case 1:
+			transaction.set('type', 'Deposit');
+		}
+		;
+		switch (account) {
+		case 0:
+			transaction.set('account', 'savingsAccount');
+			transaction.set('title', 'Savings');
+			if (type == 0)
+				savingsModel.set('balance', savingsModel.get('balance') - (+amount));
+			else
+				savingsModel.set('balance', savingsModel.get('balance') + (+amount));
+			break;
+		case 1:
+			transaction.set('account', 'checkingAccount');
+			transaction.set('title', 'Checking');
+			if (type == 0)
+				checkingModel.set('balance', checkingModel.get('balance') - (+amount));
+			else
+				checkingModel.set('balance', checkingModel.get('balance') + (+amount));
+			break;
+		case 2:
+			transaction.set('account', 'bonusSavingsAccount');
+			transaction.set('title', 'Bonus Savings');
+			if (type == 0)
+				bonusSavingsModel.set('balance', bonusSavingsModel.get('balance') - (+amount));
+			else
+				bonusSavingsModel.set('balance', bonusSavingsModel.get('balance') + (+amount));
+			break;
+		}
+		;
+		transaction.save();
+	}
+	window.location.reload();
+};

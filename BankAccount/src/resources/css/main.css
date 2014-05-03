@@ -230,7 +230,17 @@ strong {
 	float: right;
 }
 
-/* LOADING BAR */
+#storageAlert {
+	position: fixed;
+	display: none;
+	left: 0;
+	top: .6em;
+	width: 80%;
+	margin-left: 10%;
+	maring-right: 10%;
+	text-align: center;
+}
+
 #loading {
 	position: fixed;
 	right: 0;
