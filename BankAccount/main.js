@@ -180,7 +180,7 @@ $(document).ready(function() {
 
 function showAlert() {
 	setTimeout(function() {
-		$('html').append('<div id="storageAlert">Local Storage is Empty. Click "Generate 50 Transactions"</div>');
+		$('html').append('<div id="storageAlert">Local Storage is Empty. Make a transaction or click "Generate 50 Transactions"</div>');
 		$('#storageAlert').fadeIn(500, function() {
 			setTimeout(function() {
 				$('#storageAlert').fadeOut(1000);
